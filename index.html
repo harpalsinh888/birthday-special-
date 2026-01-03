@@ -213,42 +213,50 @@
 </div>
 
 <script>
-let startX = 0;
-let endX = 0;
+// ===== Page Flip Logic (FIXED) =====
+let current = 1;
+const total = 7;
 
-const diary = document.querySelector('.diary');
+function showPage(n) {
+  for (let i = 1; i <= total; i++) {
+    const p = document.getElementById('page' + i);
+    if (p) p.classList.add('hidden');
+  }
+  const active = document.getElementById('page' + n);
+  if (active) active.classList.remove('hidden');
+}
 
-diary.addEventListener('touchstart', e => {
-  startX = e.touches[0].clientX;
-});
+function nextPage() {
+  if (current < total) {
+    current++;
+    showPage(current);
+  }
+}
 
-diary.addEventListener('touchend', e => {
-  endX = e.changedTouches[0].clientX;
-  handleSwipe();
-});
+function prevPage() {
+  if (current > 1) {
+    current--;
+    showPage(current);
+  }
+}
 
-diary.addEventListener('click', () => {
+// click = next page
+document.querySelector('.diary').addEventListener('click', () => {
   nextPage();
 });
 
-function handleSwipe(){
-  if(startX - endX > 50){
-    nextPage();
-  } else if(endX - startX > 50){
-    prevPage();
-  }
-}
+// swipe support
+let startX = 0;
 
-let current = 1;
-const total = 7;
-function showPage(n){
-  for(let i=1;i<=total;i++){
-    document.getElementById('page'+i).classList.add('hidden');
-  }
-  document.getElementById('page'+n).classList.remove('hidden');
-}
-function nextPage(){ if(current<total){ current++; showPage(current);} }
-function prevPage(){ if(current>1){ current--; showPage(current);} }
+document.querySelector('.diary').addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+});
+
+document.querySelector('.diary').addEventListener('touchend', e => {
+  const endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) nextPage();
+  else if (endX - startX > 50) prevPage();
+});
 </script>
 let current = 1;
 const total = 7;
@@ -263,6 +271,7 @@ function prevPage(){ if(current>1){ current--; showPage(current);} }
 </script>
 </body>
 </html>
+
 
 
 
