@@ -21,7 +21,7 @@ body {
   align-items: center;
 }
 
-/* ===== Diary Box ===== */
+/* Diary */
 .diary {
   position: relative;
   width: 100%;
@@ -35,7 +35,7 @@ body {
   border-left: 8px solid #caa472;
 }
 
-/* ===== Spiral Binding ===== */
+/* Spiral */
 .spiral {
   position: absolute;
   left: -14px;
@@ -53,7 +53,7 @@ body {
   background-size: 100% 42px;
 }
 
-/* ===== Pages ===== */
+/* Pages */
 .page {
   position: absolute;
   inset: 0;
@@ -66,11 +66,12 @@ body {
     #f0e1c6 29px
   );
   transform-origin: left;
-  transition: transform 0.9s ease, opacity 0.9s ease;
+  transition: transform 0.8s ease, opacity 0.6s ease;
 }
 
+/* Slide + flip */
 .page.hidden {
-  transform: rotateY(-180deg);
+  transform: translateX(100%) rotateY(-25deg);
   opacity: 0;
   pointer-events: none;
 }
@@ -89,7 +90,7 @@ body {
   text-align: justify;
 }
 
-/* ===== PHOTO FRAME ===== */
+/* Photo Frame */
 .photo-frame {
   width: 90%;
   margin: 0 auto 18px;
@@ -103,7 +104,6 @@ body {
   position: relative;
 }
 
-/* Tape effect */
 .photo-frame::before,
 .photo-frame::after {
   content: "";
@@ -116,11 +116,9 @@ body {
 }
 .photo-frame::after {
   right: 10px;
-  left: auto;
   transform: rotate(6deg);
 }
 
-/* Photo placeholder */
 .photo {
   width: 100%;
   height: 240px;
@@ -133,7 +131,6 @@ body {
   color: #8b5e3c;
 }
 
-/* Caption */
 .caption {
   font-size: 1rem;
   text-align: center;
@@ -142,7 +139,6 @@ body {
   margin-top: 10px;
 }
 
-/* Hint */
 .hint {
   position: absolute;
   bottom: 10px;
@@ -153,7 +149,6 @@ body {
   opacity: 0.7;
 }
 
-/* Disable text select */
 * {
   user-select: none;
 }
@@ -165,107 +160,84 @@ body {
 <div class="diary">
   <div class="spiral"></div>
 
-  <!-- Page 1 -->
+  <!-- PAGE 1 -->
   <div class="page" id="page1">
     <div class="title">Happy Birthday 💖</div>
     <div class="wish-text">
       Today I open this diary with emotions that words can barely hold.
-      This first page is written only for you, because some people deserve more than a simple wish.<br><br>
+      This first page is written only for you.<br><br>
 
-      You came into my life as a beautiful surprise and slowly became the reason behind many of my smiles.
-      Your presence brings a calm to my heart that nothing else can.<br><br>
+      You entered my life like a beautiful surprise,
+      turning ordinary moments into something meaningful.<br><br>
 
-      On your birthday, I wish you peace in your days, comfort in your nights,
-      and a life filled with love that never feels heavy.<br><br>
-
-      This diary is my quiet way of telling you that you matter —
-      deeply, honestly, endlessly. 💕
+      May your days be gentle, your nights peaceful,
+      and your heart always surrounded by love. 💕
     </div>
   </div>
 
-  <!-- Page 2 -->
+  <!-- PHOTO PAGES -->
   <div class="page hidden" id="page2">
-    <div class="photo-frame">
-      <div class="photo">Photo 1 💕</div>
-    </div>
-    <div class="caption">
-      This picture holds a moment where everything felt simple and perfect.
-      A memory I never want to forget.
-    </div>
+    <div class="photo-frame"><div class="photo">Photo 1 💕</div></div>
+    <div class="caption">A memory that makes my heart smile.</div>
   </div>
 
-  <!-- Page 3 -->
   <div class="page hidden" id="page3">
-    <div class="photo-frame">
-      <div class="photo">Photo 2 💖</div>
-    </div>
-    <div class="caption">
-      Every smile here reminds me how effortlessly you bring happiness into my life.
-    </div>
+    <div class="photo-frame"><div class="photo">Photo 2 💖</div></div>
+    <div class="caption">Your smile makes everything feel lighter.</div>
   </div>
 
-  <!-- Page 4 -->
   <div class="page hidden" id="page4">
-    <div class="photo-frame">
-      <div class="photo">Photo 3 💞</div>
-    </div>
-    <div class="caption">
-      Some memories stay close to the heart forever — this is one of them.
-    </div>
+    <div class="photo-frame"><div class="photo">Photo 3 💞</div></div>
+    <div class="caption">Moments with you stay forever.</div>
   </div>
 
-  <!-- Page 5 -->
   <div class="page hidden" id="page5">
-    <div class="photo-frame">
-      <div class="photo">Photo 4 💗</div>
-    </div>
-    <div class="caption">
-      In this picture, I see comfort, trust, and a feeling of home.
-    </div>
+    <div class="photo-frame"><div class="photo">Photo 4 💗</div></div>
+    <div class="caption">Comfort, warmth, and you.</div>
   </div>
 
-  <!-- Page 6 -->
   <div class="page hidden" id="page6">
-    <div class="photo-frame">
-      <div class="photo">Photo 5 💘</div>
-    </div>
-    <div class="caption">
-      A silent memory that speaks everything my heart feels.
-    </div>
+    <div class="photo-frame"><div class="photo">Photo 5 💘</div></div>
+    <div class="caption">A silent memory full of love.</div>
   </div>
 
-  <!-- Page 7 -->
+  <!-- LAST PAGE -->
   <div class="page hidden" id="page7">
     <div class="title">For You, Bhavu 💖</div>
     <div class="wish-text">
-      Bhavikaba is your name, but Bhavu is how my heart knows you.<br><br>
+      Bhavikaba is your name,
+      but Bhavu is how my heart knows you.<br><br>
 
-      Thank you for being someone who makes life softer, warmer,
-      and more meaningful just by being you.<br><br>
-
-      May your life always be surrounded by love that feels safe,
-      moments that make you smile without effort,
-      and dreams that come true gently.<br><br>
+      Thank you for being someone
+      who makes life softer and more beautiful.<br><br>
 
       Happy Birthday, Bhavu 💕<br>
-      Always special. Always remembered.
+      Always special. Always cherished.
     </div>
   </div>
 
   <div class="hint">Tap or swipe to turn pages 📖</div>
 </div>
 
+<!-- PAGE FLIP SOUND -->
+<audio id="flipSound" src="page-flip.mp3" preload="auto"></audio>
+
 <script>
 let current = 1;
 const total = 7;
+const sound = document.getElementById("flipSound");
 
 function showPage(n) {
   for (let i = 1; i <= total; i++) {
     document.getElementById('page' + i).classList.add('hidden');
   }
   document.getElementById('page' + n).classList.remove('hidden');
+
+  sound.currentTime = 0;
+  sound.play().catch(()=>{});
 }
 
+// Tap
 document.querySelector('.diary').addEventListener('click', () => {
   if (current < total) {
     current++;
@@ -273,6 +245,7 @@ document.querySelector('.diary').addEventListener('click', () => {
   }
 });
 
+// Swipe
 let startX = 0;
 document.querySelector('.diary').addEventListener('touchstart', e => {
   startX = e.touches[0].clientX;
@@ -287,6 +260,7 @@ document.querySelector('.diary').addEventListener('touchend', e => {
 
 </body>
 </html>
+
 
 
 
