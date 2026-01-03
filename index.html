@@ -102,6 +102,17 @@
         height: 760px;
       }
     }
+  
+    /* Tap / Swipe hint */
+    .hint{
+      position:absolute;
+      bottom:10px;
+      width:100%;
+      text-align:center;
+      font-size:0.85rem;
+      color:#8b5e3c;
+      opacity:0.7;
+    }
   </style>
 </head>
 <body>
@@ -188,13 +199,48 @@
   </div>
 </div>
 
-<div class="controls">
-  <button onclick="prevPage()">⬅ Prev</button>
-  <button onclick="nextPage()">Next ➡</button>
-</div>
+
+  <div class="hint">Tap or swipe to turn the page 📖</div>
 </div>
 
 <script>
+let startX = 0;
+let endX = 0;
+
+const diary = document.querySelector('.diary');
+
+diary.addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+});
+
+diary.addEventListener('touchend', e => {
+  endX = e.changedTouches[0].clientX;
+  handleSwipe();
+});
+
+diary.addEventListener('click', () => {
+  nextPage();
+});
+
+function handleSwipe(){
+  if(startX - endX > 50){
+    nextPage();
+  } else if(endX - startX > 50){
+    prevPage();
+  }
+}
+
+let current = 1;
+const total = 7;
+function showPage(n){
+  for(let i=1;i<=total;i++){
+    document.getElementById('page'+i).classList.add('hidden');
+  }
+  document.getElementById('page'+n).classList.remove('hidden');
+}
+function nextPage(){ if(current<total){ current++; showPage(current);} }
+function prevPage(){ if(current>1){ current--; showPage(current);} }
+</script>
 let current = 1;
 const total = 7;
 function showPage(n){
@@ -208,4 +254,5 @@ function prevPage(){ if(current>1){ current--; showPage(current);} }
 </script>
 </body>
 </html>
+
 
