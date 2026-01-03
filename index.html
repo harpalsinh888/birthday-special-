@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="overflow-x:hidden;">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
       justify-content: center;
       align-items: center;
       padding: 15px;
-      overflow: hidden; /* prevents side code/overflow */
+      overflow-x: hidden; /* hard stop horizontal leak */
     }
     .diary {
       overflow: hidden; /* hides any side content */
@@ -269,8 +269,19 @@ function showPage(n){
 function nextPage(){ if(current<total){ current++; showPage(current);} }
 function prevPage(){ if(current>1){ current--; showPage(current);} }
 </script>
+<script type="text/javascript">
+/* HARD SAFETY: hide any stray text nodes */
+document.addEventListener('DOMContentLoaded',()=>{
+  document.body.childNodes.forEach(n=>{
+    if(n.nodeType===3 && n.textContent.trim().length>0){
+      n.textContent='';
+    }
+  });
+});
+</script>
 </body>
 </html>
+
 
 
 
