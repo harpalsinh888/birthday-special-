@@ -14,7 +14,6 @@
       align-items: center;
       height: 100vh;
     }
-
     .diary {
       width: 90%;
       max-width: 430px;
@@ -26,43 +25,33 @@
       overflow: hidden;
       border-left: 8px solid #caa472;
     }
-
     .page {
       position: absolute;
       width: 100%;
       height: 100%;
       padding: 30px 25px;
       box-sizing: border-box;
-      background: repeating-linear-gradient(
-        to bottom,
-        #fff8ee,
-        #fff8ee 28px,
-        #f0e1c6 29px
-      );
+      background: repeating-linear-gradient(to bottom,#fff8ee,#fff8ee 28px,#f0e1c6 29px);
       transform-origin: left;
       transition: transform 0.9s ease, opacity 0.9s ease;
     }
-
     .page.hidden {
       transform: rotateY(-180deg);
       opacity: 0;
       pointer-events: none;
     }
-
     .title {
       font-size: 1.9rem;
       text-align: center;
       margin-bottom: 20px;
       color: #8b5e3c;
     }
-
     .wish-text {
       font-size: 1.1rem;
-      line-height: 1.9;
+      line-height: 1.95;
       color: #5a3e2b;
       text-align: justify;
     }
-
     .photo {
       width: 90%;
       height: 260px;
@@ -76,14 +65,12 @@
       font-size: 1rem;
       background: #fffdf8;
     }
-
     .caption {
       font-size: 1rem;
       text-align: center;
       color: #6b4b35;
-      line-height: 1.6;
+      line-height: 1.7;
     }
-
     .controls {
       position: absolute;
       bottom: 12px;
@@ -92,7 +79,6 @@
       justify-content: space-between;
       padding: 0 20px;
     }
-
     button {
       background: transparent;
       border: none;
@@ -100,132 +86,110 @@
       color: #8b5e3c;
       cursor: pointer;
     }
-
-    button:hover {
-      text-decoration: underline;
-    }
+    button:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-
 <div class="diary">
 
-  <!-- First Page : Only Wish -->
-  <div class="page" id="page1">
-    <div class="title">Happy Birthday 💖</div>
-    <div class="wish-text">
-      Today, I open this diary with a heart full of feelings just for you.
-      This is not just a birthday wish, but a small piece of my heart written in words.
-      
-      You came into my life quietly, but changed everything beautifully.
-      Your smile feels like home, and your presence makes every day warmer.
-      
-      On your special day, I wish you endless happiness, peaceful nights,
-      and a life filled with love as pure as your heart.
-      
-      This diary is a collection of moments, memories, and emotions —
-      all starting from you. 💕
-    </div>
+<!-- Page 1 : Full Wish -->
+<div class="page" id="page1">
+  <div class="title">Happy Birthday 💖</div>
+  <div class="wish-text">
+    Today I open this diary with emotions that words can barely hold.
+    This first page is written only for you, because some people deserve more than a simple wish.
+    
+    You came into my life as a beautiful surprise, and slowly became a reason behind many of my smiles.
+    Your presence brings a calm to my heart that nothing else can.
+    
+    On your birthday, I wish you days filled with peace, nights filled with comfort,
+    and a life filled with love that never feels heavy.
+    May every dream you carry find courage, and every step you take feel supported.
+    
+    This diary is my way of telling you that you matter — deeply, honestly, and endlessly. 💕
   </div>
+</div>
 
-  <!-- Page 2 -->
-  <div class="page hidden" id="page2">
-    <div class="photo">Photo 1 💕</div>
-    <div class="caption">
-      This page holds one of my favorite memories of you.
-      A moment I never want to forget.
-    </div>
+<!-- Page 2 -->
+<div class="page hidden" id="page2">
+  <div class="photo">Photo 1 💕</div>
+  <div class="caption">
+    This picture reminds me of how effortlessly you make moments special.
+    A simple second with you turns into a memory worth keeping forever.
   </div>
+</div>
 
-  <!-- Page 3 -->
-  <div class="page hidden" id="page3">
-    <div class="photo">Photo 2 💖</div>
-    <div class="caption">
-      Your smile on this day made everything around feel brighter.
-      Moments like these live forever in my heart.
-    </div>
+<!-- Page 3 -->
+<div class="page hidden" id="page3">
+  <div class="photo">Photo 2 💖</div>
+  <div class="caption">
+    Every smile in this photo carries a thousand unspoken feelings.
+    It shows the warmth, kindness, and beauty you bring into my world.
   </div>
+</div>
 
-  <!-- Page 4 -->
-  <div class="page hidden" id="page4">
-    <div class="photo">Photo 3 💞</div>
-    <div class="caption">
-      Every picture of you tells a story.
-      And every story reminds me how special you are.
-    </div>
+<!-- Page 4 -->
+<div class="page hidden" id="page4">
+  <div class="photo">Photo 3 💞</div>
+  <div class="caption">
+    Some moments stay close to the heart, no matter how much time passes.
+    This one is special because it holds a piece of you that I adore.
   </div>
+</div>
 
-  <!-- Page 5 -->
-  <div class="page hidden" id="page5">
-    <div class="photo">Photo 4 💗</div>
-    <div class="caption">
-      Some memories don't need words,
-      but my heart still wants to write them down.
-    </div>
+<!-- Page 5 -->
+<div class="page hidden" id="page5">
+  <div class="photo">Photo 4 💗</div>
+  <div class="caption">
+    In this picture, I see comfort, trust, and a feeling of home.
+    It reminds me why you are so important to me.
   </div>
+</div>
 
-  <!-- Page 6 -->
-  <div class="page hidden" id="page6">
-    <div class="photo">Photo 5 💘</div>
-    <div class="caption">
-      Some memories don't need words,
-      but my heart still wants to write them down.
-    </div>
+<!-- Page 6 -->
+<div class="page hidden" id="page6">
+  <div class="photo">Photo 5 💘</div>
+  <div class="caption">
+    This page holds emotions that words can barely describe.
+    A memory that quietly says how deeply you are cherished.
   </div>
+</div>
 
-  <!-- Last Page : Final Wish -->
-  <div class="page hidden" id="page7">
-    <div class="title">For You, Bhavu 💖</div>
-    <div class="wish-text">
-      Bhavikaba… to the world this is your name,
-      but to my heart, you will always be my Bhavu.
-      
-      As this diary reaches its last page, my feelings still feel unfinished.
-      Every photo before this was a memory,
-      and every memory was a reminder of how special you are to me.
-      
-      Bhavu, may your life be as beautiful as your smile,
-      as soft as your heart, and as warm as your presence.
-      I wish you love in abundance, happiness without limits,
-      and dreams that always find their way to you.
-      
-      Happy Birthday, Bhavu 💕
-      Always special. Always loved.
-    </div>
+<!-- Page 7 : Final Wish -->
+<div class="page hidden" id="page7">
+  <div class="title">For You, Bhavu 💖</div>
+  <div class="wish-text">
+    Bhavikaba is your name, but Bhavu is how my heart knows you.
+    And this last page is written with feelings that go far beyond this diary.
+    
+    As these pages turn, memories stay alive, and emotions grow stronger.
+    Thank you for being the kind of person who makes life feel a little softer and a lot brighter.
+    
+    Bhavu, may your life always be surrounded by people who value you,
+    moments that make you smile without trying, and love that feels safe and true.
+    
+    Happy Birthday, Bhavu 💕
+    Always remembered. Always cared for. Always special.
   </div>
+</div>
 
-  <div class="controls">
-    <button onclick="prevPage()">⬅ Prev</button>
-    <button onclick="nextPage()">Next ➡</button>
-  </div>
-
+<div class="controls">
+  <button onclick="prevPage()">⬅ Prev</button>
+  <button onclick="nextPage()">Next ➡</button>
+</div>
 </div>
 
 <script>
-  let current = 1;
-  const total = 7;
-
-  function showPage(n) {
-    for (let i = 1; i <= total; i++) {
-      document.getElementById('page' + i).classList.add('hidden');
-    }
-    document.getElementById('page' + n).classList.remove('hidden');
+let current = 1;
+const total = 7;
+function showPage(n){
+  for(let i=1;i<=total;i++){
+    document.getElementById('page'+i).classList.add('hidden');
   }
-
-  function nextPage() {
-    if (current < total) {
-      current++;
-      showPage(current);
-    }
-  }
-
-  function prevPage() {
-    if (current > 1) {
-      current--;
-      showPage(current);
-    }
-  }
+  document.getElementById('page'+n).classList.remove('hidden');
+}
+function nextPage(){ if(current<total){ current++; showPage(current);} }
+function prevPage(){ if(current>1){ current--; showPage(current);} }
 </script>
-
 </body>
 </html>
