@@ -9,15 +9,17 @@
       margin: 0;
       font-family: 'Georgia', serif;
       background: radial-gradient(circle, #f7e7ce, #e6cfa7);
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      padding: 15px;
     }
     .diary {
-      width: 90%;
+      width: 100%;
       max-width: 430px;
       height: 85vh;
+      max-height: 780px;
       background: #fff8ee;
       border-radius: 12px;
       box-shadow: 0 25px 50px rgba(0,0,0,0.35);
@@ -87,6 +89,19 @@
       cursor: pointer;
     }
     button:hover { text-decoration: underline; }
+  
+    /* Responsive fix for larger screens */
+    @media (min-width: 768px) {
+      .diary {
+        height: 90vh;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .diary {
+        height: 760px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -193,3 +208,4 @@ function prevPage(){ if(current>1){ current--; showPage(current);} }
 </script>
 </body>
 </html>
+
