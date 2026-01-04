@@ -35,21 +35,23 @@ body {
   border-left: 8px solid #caa472;
 }
 
-/* Spiral */
+/* 🔥 SPIRAL FIXED */
 .spiral {
   position: absolute;
   left: -14px;
   top: 18px;
   bottom: 18px;
   width: 28px;
+  z-index: 5;
   pointer-events: none;
 }
 .spiral::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, #111 0 6px, transparent 7px) repeat-y;
-  background-size: 100% 42px;
+  background:
+    radial-gradient(circle at center, #222 0 6px, transparent 7px) repeat-y;
+  background-size: 100% 38px;
 }
 
 /* Pages */
@@ -68,6 +70,7 @@ body {
   transition: transform 0.8s ease, opacity 0.6s ease;
 }
 
+/* Page animation */
 .page.hidden {
   transform: translateX(100%) rotateY(-25deg);
   opacity: 0;
@@ -110,18 +113,15 @@ body {
   height: 18px;
   background: rgba(255,255,255,0.6);
   top: -10px;
-  transform: rotate(-8deg);
 }
-.photo-frame::after {
-  right: 10px;
-  transform: rotate(6deg);
-}
+.photo-frame::before { left: 10px; transform: rotate(-8deg); }
+.photo-frame::after  { right: 10px; transform: rotate(6deg); }
 
-/* PHOTO FIXED HERE */
+/* Photo */
 .photo {
   width: 100%;
-  height: 320px;          /* PHOTO SIZE INCREASED */
-  object-fit: cover;     /* PERFECT FIT */
+  height: 320px;
+  object-fit: cover;
   border-radius: 6px;
   display: block;
 }
@@ -153,14 +153,14 @@ body {
 <body>
 
 <div class="diary">
+  <!-- ✅ SPIRAL ADDED -->
   <div class="spiral"></div>
 
   <!-- PAGE 1 -->
   <div class="page" id="page1">
     <div class="title">Happy Birthday 💖</div>
     <div class="wish-text">
-      Today I open this diary with emotions that words can barely hold.
-      This first page is written only for you.<br><br>
+      Today I open this diary with emotions that words can barely hold.<br><br>
       You entered my life like a beautiful surprise,
       turning ordinary moments into something meaningful.<br><br>
       May your days be gentle, your nights peaceful,
@@ -171,14 +171,14 @@ body {
   <!-- PHOTO PAGES -->
   <div class="page hidden" id="page2">
     <div class="photo-frame">
-      <img src="2.jpeg" class="photo" alt="Bhavu Photo 1">
+      <img src="2.jpeg" class="photo">
     </div>
     <div class="caption">A memory that makes my heart smile.</div>
   </div>
 
   <div class="page hidden" id="page3">
     <div class="photo-frame">
-      <img src="1.jpeg" class="photo" alt="Bhavu Photo 2">
+      <img src="1.jpeg" class="photo">
     </div>
     <div class="caption">Your smile makes everything feel lighter.</div>
   </div>
@@ -213,14 +213,35 @@ function showPage(n) {
   sound.play().catch(()=>{});
 }
 
+/* CLICK = NEXT */
 document.querySelector('.diary').addEventListener('click', () => {
-  if (current < total) current++;
+  if (current < total) {
+    current++;
+    showPage(current);
+  }
+});
+
+/* ✅ SWIPE FIXED */
+let startX = 0;
+
+document.querySelector('.diary').addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+});
+
+document.querySelector('.diary').addEventListener('touchend', e => {
+  let endX = e.changedTouches[0].clientX;
+  if (startX - endX > 60 && current < total) {
+    current++;
+  } else if (endX - startX > 60 && current > 1) {
+    current--;
+  }
   showPage(current);
 });
 </script>
 
 </body>
 </html>
+
 
 
 
