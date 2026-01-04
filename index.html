@@ -48,8 +48,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at center, #111 0 6px, transparent 7px) repeat-y;
+  background: radial-gradient(circle at center, #111 0 6px, transparent 7px) repeat-y;
   background-size: 100% 42px;
 }
 
@@ -69,7 +68,6 @@ body {
   transition: transform 0.8s ease, opacity 0.6s ease;
 }
 
-/* Slide + flip */
 .page.hidden {
   transform: translateX(100%) rotateY(-25deg);
   opacity: 0;
@@ -92,15 +90,15 @@ body {
 
 /* Photo Frame */
 .photo-frame {
-  width: 90%;
+  width: 92%;
   margin: 0 auto 18px;
   padding: 12px;
   background: #fdfbf6;
   border: 6px solid #8b5e3c;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow:
     inset 0 0 0 3px #d8b892,
-    0 10px 25px rgba(0,0,0,0.25);
+    0 12px 25px rgba(0,0,0,0.25);
   position: relative;
 }
 
@@ -119,16 +117,13 @@ body {
   transform: rotate(6deg);
 }
 
+/* PHOTO FIXED HERE */
 .photo {
   width: 100%;
-  height: 240px;
-  border-radius: 4px;
-  background: #fff;
-  border: 2px dashed #caa472;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #8b5e3c;
+  height: 320px;          /* PHOTO SIZE INCREASED */
+  object-fit: cover;     /* PERFECT FIT */
+  border-radius: 6px;
+  display: block;
 }
 
 .caption {
@@ -166,10 +161,8 @@ body {
     <div class="wish-text">
       Today I open this diary with emotions that words can barely hold.
       This first page is written only for you.<br><br>
-
       You entered my life like a beautiful surprise,
       turning ordinary moments into something meaningful.<br><br>
-
       May your days be gentle, your nights peaceful,
       and your heart always surrounded by love. 💕
     </div>
@@ -178,7 +171,7 @@ body {
   <!-- PHOTO PAGES -->
   <div class="page hidden" id="page2">
     <div class="photo-frame">
-       <img src="2.jpeg" class="photo" alt="Bhavu Photo 1">
+      <img src="2.jpeg" class="photo" alt="Bhavu Photo 1">
     </div>
     <div class="caption">A memory that makes my heart smile.</div>
   </div>
@@ -190,31 +183,12 @@ body {
     <div class="caption">Your smile makes everything feel lighter.</div>
   </div>
 
-  <div class="page hidden" id="page4">
-    <div class="photo-frame"><div class="photo">Photo 3 💞</div></div>
-    <div class="caption">Moments with you stay forever.</div>
-  </div>
-
-  <div class="page hidden" id="page5">
-    <div class="photo-frame"><div class="photo">Photo 4 💗</div></div>
-    <div class="caption">Comfort, warmth, and you.</div>
-  </div>
-
-  <div class="page hidden" id="page6">
-    <div class="photo-frame"><div class="photo">Photo 5 💘</div></div>
-    <div class="caption">A silent memory full of love.</div>
-  </div>
-
   <!-- LAST PAGE -->
   <div class="page hidden" id="page7">
     <div class="title">For You, Bhavu 💖</div>
     <div class="wish-text">
       Bhavikaba is your name,
       but Bhavu is how my heart knows you.<br><br>
-
-      Thank you for being someone
-      who makes life softer and more beautiful.<br><br>
-
       Happy Birthday, Bhavu 💕<br>
       Always special. Always cherished.
     </div>
@@ -223,7 +197,6 @@ body {
   <div class="hint">Tap or swipe to turn pages 📖</div>
 </div>
 
-<!-- PAGE FLIP SOUND -->
 <audio id="flipSound" src="page-flip.mp3" preload="auto"></audio>
 
 <script>
@@ -233,37 +206,22 @@ const sound = document.getElementById("flipSound");
 
 function showPage(n) {
   for (let i = 1; i <= total; i++) {
-    document.getElementById('page' + i).classList.add('hidden');
+    document.getElementById('page' + i)?.classList.add('hidden');
   }
-  document.getElementById('page' + n).classList.remove('hidden');
-
+  document.getElementById('page' + n)?.classList.remove('hidden');
   sound.currentTime = 0;
   sound.play().catch(()=>{});
 }
 
-// Tap
 document.querySelector('.diary').addEventListener('click', () => {
-  if (current < total) {
-    current++;
-    showPage(current);
-  }
-});
-
-// Swipe
-let startX = 0;
-document.querySelector('.diary').addEventListener('touchstart', e => {
-  startX = e.touches[0].clientX;
-});
-document.querySelector('.diary').addEventListener('touchend', e => {
-  const endX = e.changedTouches[0].clientX;
-  if (startX - endX > 50 && current < total) current++;
-  else if (endX - startX > 50 && current > 1) current--;
+  if (current < total) current++;
   showPage(current);
 });
 </script>
 
 </body>
 </html>
+
 
 
 
