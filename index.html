@@ -9,10 +9,10 @@
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  height: 100%;
+  overflow: hidden;
   font-family: 'Georgia', serif;
   background: radial-gradient(circle, #f7e7ce, #e6cfa7);
-  height: 100%;
 }
 
 body {
@@ -21,27 +21,27 @@ body {
   align-items: center;
 }
 
-/* Diary */
+/* DIARY FRAME */
 .diary {
   position: relative;
   width: 100%;
-  max-width: 430px;
-  height: 85vh;
-  max-height: 780px;
+  max-width: 420px;
+  height: 88vh;
+  max-height: 760px;
   background: #fff8ee;
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 25px 50px rgba(0,0,0,0.35);
   overflow: hidden;
-  border-left: 8px solid #caa472;
+  border: 8px solid #caa472;
 }
 
-/* Spiral */
+/* SPIRAL */
 .spiral {
   position: absolute;
-  left: -14px;
-  top: 18px;
-  bottom: 18px;
-  width: 28px;
+  left: -16px;
+  top: 16px;
+  bottom: 16px;
+  width: 32px;
   pointer-events: none;
 }
 .spiral::before {
@@ -49,15 +49,15 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at center, #111 0 6px, transparent 7px) repeat-y;
+    radial-gradient(circle, #222 0 6px, transparent 7px) repeat-y;
   background-size: 100% 42px;
 }
 
-/* Pages */
+/* PAGES */
 .page {
   position: absolute;
   inset: 0;
-  padding: 30px 25px;
+  padding: 30px 24px;
   box-sizing: border-box;
   background: repeating-linear-gradient(
     to bottom,
@@ -65,11 +65,10 @@ body {
     #fff8ee 28px,
     #f0e1c6 29px
   );
-  transform-origin: left;
+  transform-origin: left center;
   transition: transform 0.8s ease, opacity 0.6s ease;
 }
 
-/* Slide + flip */
 .page.hidden {
   transform: translateX(100%) rotateY(-25deg);
   opacity: 0;
@@ -80,28 +79,29 @@ body {
   text-align: center;
   font-size: 1.9rem;
   color: #8b5e3c;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .wish-text {
-  font-size: 1.1rem;
-  line-height: 1.95;
+  font-size: 1.05rem;
+  line-height: 1.9;
   color: #5a3e2b;
   text-align: justify;
 }
 
-/* Photo Frame */
+/* PHOTO FRAME */
 .photo-frame {
-  width: 90%;
+  width: 92%;
   margin: 0 auto 18px;
   padding: 12px;
   background: #fdfbf6;
   border: 6px solid #8b5e3c;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow:
     inset 0 0 0 3px #d8b892,
     0 10px 25px rgba(0,0,0,0.25);
   position: relative;
+  overflow: hidden;
 }
 
 .photo-frame::before,
@@ -119,16 +119,13 @@ body {
   transform: rotate(6deg);
 }
 
+/* IMAGE PERFECT FIT */
 .photo {
   width: 100%;
   height: 240px;
-  border-radius: 4px;
-  background: #fff;
-  border: 2px dashed #caa472;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #8b5e3c;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
 }
 
 .caption {
@@ -136,9 +133,9 @@ body {
   text-align: center;
   color: #6b4b35;
   line-height: 1.7;
-  margin-top: 10px;
 }
 
+/* HINT */
 .hint {
   position: absolute;
   bottom: 10px;
@@ -146,9 +143,10 @@ body {
   text-align: center;
   font-size: 0.85rem;
   color: #8b5e3c;
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
+/* DISABLE TEXT SELECTION */
 * {
   user-select: none;
 }
@@ -175,36 +173,40 @@ body {
     </div>
   </div>
 
-  <!-- PHOTO PAGES -->
+  <!-- PHOTO PAGE -->
   <div class="page hidden" id="page2">
     <div class="photo-frame">
-       <img src="2.jpeg" class="photo" alt="Bhavu Photo 1">
+      <img src="2.jpeg" class="photo" alt="Bhavu Photo">
     </div>
     <div class="caption">A memory that makes my heart smile.</div>
   </div>
 
+  <!-- PAGE 3 -->
   <div class="page hidden" id="page3">
-    <div class="photo-frame"><div class="photo">Photo 2 💖</div></div>
-    <div class="caption">Your smile makes everything feel lighter.</div>
+    <div class="photo-frame">
+      <img src="3.jpeg" class="photo">
+    </div>
+    <div class="caption">Your smile makes everything lighter.</div>
   </div>
 
+  <!-- PAGE 4 -->
   <div class="page hidden" id="page4">
-    <div class="photo-frame"><div class="photo">Photo 3 💞</div></div>
+    <div class="photo-frame">
+      <img src="4.jpeg" class="photo">
+    </div>
     <div class="caption">Moments with you stay forever.</div>
   </div>
 
+  <!-- PAGE 5 -->
   <div class="page hidden" id="page5">
-    <div class="photo-frame"><div class="photo">Photo 4 💗</div></div>
+    <div class="photo-frame">
+      <img src="5.jpeg" class="photo">
+    </div>
     <div class="caption">Comfort, warmth, and you.</div>
   </div>
 
-  <div class="page hidden" id="page6">
-    <div class="photo-frame"><div class="photo">Photo 5 💘</div></div>
-    <div class="caption">A silent memory full of love.</div>
-  </div>
-
   <!-- LAST PAGE -->
-  <div class="page hidden" id="page7">
+  <div class="page hidden" id="page6">
     <div class="title">For You, Bhavu 💖</div>
     <div class="wish-text">
       Bhavikaba is your name,
@@ -226,34 +228,34 @@ body {
 
 <script>
 let current = 1;
-const total = 7;
+const total = 6;
 const sound = document.getElementById("flipSound");
 
 function showPage(n) {
   for (let i = 1; i <= total; i++) {
-    document.getElementById('page' + i).classList.add('hidden');
+    document.getElementById("page" + i).classList.add("hidden");
   }
-  document.getElementById('page' + n).classList.remove('hidden');
+  document.getElementById("page" + n).classList.remove("hidden");
 
   sound.currentTime = 0;
   sound.play().catch(()=>{});
 }
 
-// Tap
-document.querySelector('.diary').addEventListener('click', () => {
+// TAP
+document.querySelector(".diary").addEventListener("click", () => {
   if (current < total) {
     current++;
     showPage(current);
   }
 });
 
-// Swipe
+// SWIPE
 let startX = 0;
-document.querySelector('.diary').addEventListener('touchstart', e => {
+document.querySelector(".diary").addEventListener("touchstart", e => {
   startX = e.touches[0].clientX;
 });
-document.querySelector('.diary').addEventListener('touchend', e => {
-  const endX = e.changedTouches[0].clientX;
+document.querySelector(".diary").addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
   if (startX - endX > 50 && current < total) current++;
   else if (endX - startX > 50 && current > 1) current--;
   showPage(current);
@@ -262,6 +264,7 @@ document.querySelector('.diary').addEventListener('touchend', e => {
 
 </body>
 </html>
+
 
 
 
