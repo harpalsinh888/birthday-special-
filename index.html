@@ -27,6 +27,7 @@ body {
   width: 100%;
   max-width: 430px;
   height: 85vh;
+  max-height: 780px;
   background: #fff8ee;
   border-radius: 14px;
   box-shadow: 0 25px 50px rgba(0,0,0,0.35);
@@ -41,63 +42,52 @@ body {
   top: 18px;
   bottom: 18px;
   width: 28px;
-  z-index: 5;
+  z-index: 10;
   pointer-events: none;
 }
 .spiral::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle, #222 0 6px, transparent 7px) repeat-y;
+  background:
+    radial-gradient(circle at center, #222 0 6px, transparent 7px) repeat-y;
   background-size: 100% 38px;
 }
 
-/* Page */
+/* Pages */
 .page {
   position: absolute;
   inset: 0;
   padding: 30px 25px;
+  box-sizing: border-box;
   background: repeating-linear-gradient(
     to bottom,
     #fff8ee,
     #fff8ee 28px,
     #f0e1c6 29px
   );
-  transition: all 0.9s ease;
+  transform-origin: left;
+  transition: transform 0.9s ease, opacity 0.6s ease, filter 0.6s ease;
 }
 
-/* === ANIMATION STYLES === */
-
-/* 1️⃣ Rolling */
-.hide-roll {
-  transform: translateX(120%) rotate(35deg);
+/* Default hidden */
+.page.hidden {
   opacity: 0;
   pointer-events: none;
 }
 
-/* 2️⃣ Blur */
-.hide-blur {
-  filter: blur(14px);
-  opacity: 0;
-  transform: scale(1.1);
-  pointer-events: none;
+/* Flip styles */
+.page.flip-slide.hidden {
+  transform: translateX(100%) rotateY(-25deg);
+}
+.page.flip-roll.hidden {
+  transform: rotateZ(8deg) translateX(120%);
+}
+.page.flip-blur.hidden {
+  transform: scale(0.92);
+  filter: blur(6px);
 }
 
-/* 3️⃣ Slide */
-.hide-slide {
-  transform: translateX(-120%);
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* 4️⃣ Zoom */
-.hide-zoom {
-  transform: scale(0.6);
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Text */
 .title {
   text-align: center;
   font-size: 1.9rem;
@@ -107,44 +97,81 @@ body {
 
 .wish-text {
   font-size: 1.1rem;
-  line-height: 1.9;
+  line-height: 1.95;
   color: #5a3e2b;
   text-align: justify;
 }
 
-/* Photo */
+/* 🌸 PREMIUM PHOTO FRAME */
 .photo-frame {
   width: 95%;
-  margin: auto;
-  padding: 14px;
-  border: 6px solid #8b5e3c;
-  border-radius: 12px;
-  background: #fdfbf6;
+  margin: 0 auto 18px;
+  padding: 16px;
+  background: linear-gradient(145deg, #fffaf2, #f3e2c7);
+  border-radius: 18px;
+  position: relative;
+  border: 4px solid #8b5e3c;
+  box-shadow:
+    inset 0 0 0 4px #e7cfa3,
+    inset 0 0 0 8px #fff8ee,
+    0 18px 35px rgba(0,0,0,0.35);
 }
 
+/* Decorative corners */
+.photo-frame::before,
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 3px solid #8b5e3c;
+}
+.photo-frame::before {
+  top: 8px;
+  left: 8px;
+  border-right: none;
+  border-bottom: none;
+}
+.photo-frame::after {
+  bottom: 8px;
+  right: 8px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Photo */
 .photo {
   width: 100%;
   height: 340px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 12px;
+  display: block;
+  box-shadow:
+    inset 0 0 12px rgba(255,255,255,0.6),
+    0 10px 20px rgba(0,0,0,0.25);
 }
 
 .caption {
+  font-size: 1rem;
   text-align: center;
-  margin-top: 12px;
   color: #6b4b35;
+  line-height: 1.7;
+  margin-top: 10px;
 }
 
 .hint {
   position: absolute;
-  bottom: 8px;
+  bottom: 10px;
   width: 100%;
   text-align: center;
   font-size: 0.85rem;
+  color: #8b5e3c;
   opacity: 0.7;
 }
 
-* { user-select: none; }
+* {
+  user-select: none;
+}
 </style>
 </head>
 
@@ -153,87 +180,85 @@ body {
 <div class="diary">
   <div class="spiral"></div>
 
-  <div class="page" id="page1">
+  <!-- PAGE 1 -->
+  <div class="page flip-slide" id="page1">
     <div class="title">Happy Birthday 💖</div>
     <div class="wish-text">
-      This diary opens with feelings I cannot fully explain.<br><br>
-      Every page holds memories, emotions, and pieces of my heart.
+      Today I open this diary with emotions that words can barely hold.<br><br>
+      You entered my life like a beautiful surprise,
+      turning ordinary moments into something meaningful.<br><br>
+      May your days be gentle, your nights peaceful,
+      and your heart always surrounded by love. 💕
     </div>
   </div>
 
-  <div class="page hide-roll" id="page2">
-    <div class="photo-frame">
-      <img src="1.jpeg" class="photo">
-    </div>
-    <div class="caption">A smile worth remembering.</div>
-  </div>
-
-  <div class="page hide-roll" id="page3">
+  <!-- PHOTO PAGES -->
+  <div class="page flip-roll hidden" id="page2">
     <div class="photo-frame">
       <img src="2.jpeg" class="photo">
     </div>
-    <div class="caption">Captured happiness.</div>
+    <div class="caption">A memory that makes my heart smile.</div>
   </div>
 
-  <div class="page hide-roll" id="page4">
+  <div class="page flip-blur hidden" id="page3">
     <div class="photo-frame">
-      <img src="3.jpeg" class="photo">
+      <img src="1.jpeg" class="photo">
     </div>
-    <div class="caption">Moments that matter.</div>
+    <div class="caption">Your smile makes everything feel lighter.</div>
   </div>
 
-  <div class="page hide-roll" id="page5">
-    <div class="photo-frame">
-      <img src="4.jpeg" class="photo">
-    </div>
-    <div class="caption">Forever cherished.</div>
-  </div>
-
-  <div class="page hide-roll" id="page6">
+  <div class="page flip-slide hidden" id="page4">
     <div class="photo-frame">
       <img src="5.jpeg" class="photo">
     </div>
-    <div class="caption">Pure happiness.</div>
+    <div class="caption">Moments that stay forever.</div>
   </div>
 
-  <div class="page hide-roll" id="page7">
-    <div class="title">For You 💕</div>
+  <div class="page flip-roll hidden" id="page5">
+    <div class="photo-frame">
+      <img src="4.jpeg" class="photo">
+    </div>
+    <div class="caption">Comfort, warmth and you.</div>
+  </div>
+
+  <div class="page flip-blur hidden" id="page6">
+    <div class="photo-frame">
+      <img src="3.jpeg" class="photo">
+    </div>
+    <div class="caption">A silent memory full of love.</div>
+  </div>
+
+  <!-- LAST PAGE -->
+  <div class="page flip-slide hidden" id="page7">
+    <div class="title">For You, Bhavu 💖</div>
     <div class="wish-text">
-      Always special. Always remembered.
+      Bhavikaba is your name,
+      but Bhavu is how my heart knows you.<br><br>
+      Happy Birthday, Bhavu 💕<br>
+      Always special. Always cherished.
     </div>
   </div>
 
-  <div class="hint">Swipe or tap to flip 📖</div>
+  <div class="hint">Tap or swipe to turn pages 📖</div>
 </div>
 
-<audio id="flipSound" src="page-flip.mp3"></audio>
+<audio id="flipSound" src="page-flip.mp3" preload="auto"></audio>
 
 <script>
 let current = 1;
-let animationIndex = 0;
 const total = 7;
-
-const animations = [
-  'hide-roll',
-  'hide-blur',
-  'hide-slide',
-  'hide-zoom'
-];
+const sound = document.getElementById("flipSound");
 
 function showPage(n) {
-  const anim = animations[animationIndex % animations.length];
-
   for (let i = 1; i <= total; i++) {
-    const p = document.getElementById('page' + i);
-    animations.forEach(a => p.classList.remove(a));
-    if (i !== n) p.classList.add(anim);
+    document.getElementById('page' + i).classList.add('hidden');
   }
-
-  animationIndex++;
-  document.getElementById("flipSound").play().catch(()=>{});
+  document.getElementById('page' + n).classList.remove('hidden');
+  sound.currentTime = 0;
+  sound.play().catch(()=>{});
 }
 
-/* Tap */
+/* Click */
 document.querySelector('.diary').addEventListener('click', () => {
   if (current < total) {
     current++;
@@ -256,6 +281,7 @@ document.querySelector('.diary').addEventListener('touchend', e => {
 
 </body>
 </html>
+
 
 
 
