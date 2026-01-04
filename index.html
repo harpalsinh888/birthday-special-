@@ -27,7 +27,6 @@ body {
   width: 100%;
   max-width: 430px;
   height: 85vh;
-  max-height: 780px;
   background: #fff8ee;
   border-radius: 14px;
   box-shadow: 0 25px 50px rgba(0,0,0,0.35);
@@ -49,12 +48,11 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at center, #222 0 6px, transparent 7px) repeat-y;
+  background: radial-gradient(circle, #222 0 6px, transparent 7px) repeat-y;
   background-size: 100% 38px;
 }
 
-/* Pages */
+/* Page */
 .page {
   position: absolute;
   inset: 0;
@@ -65,22 +63,41 @@ body {
     #fff8ee 28px,
     #f0e1c6 29px
   );
-  transition: transform 0.9s ease, opacity 0.6s ease;
+  transition: all 0.9s ease;
 }
 
-/* Animations */
-.hidden-right {
-  transform: translateX(110%) rotateY(-35deg);
+/* === ANIMATION STYLES === */
+
+/* 1️⃣ Rolling */
+.hide-roll {
+  transform: translateX(120%) rotate(35deg);
   opacity: 0;
   pointer-events: none;
 }
 
-.hidden-left {
-  transform: translateX(-110%) rotateY(35deg);
+/* 2️⃣ Blur */
+.hide-blur {
+  filter: blur(14px);
+  opacity: 0;
+  transform: scale(1.1);
+  pointer-events: none;
+}
+
+/* 3️⃣ Slide */
+.hide-slide {
+  transform: translateX(-120%);
   opacity: 0;
   pointer-events: none;
 }
 
+/* 4️⃣ Zoom */
+.hide-zoom {
+  transform: scale(0.6);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Text */
 .title {
   text-align: center;
   font-size: 1.9rem;
@@ -90,22 +107,19 @@ body {
 
 .wish-text {
   font-size: 1.1rem;
-  line-height: 1.95;
+  line-height: 1.9;
   color: #5a3e2b;
   text-align: justify;
 }
 
-/* Photo Frame */
+/* Photo */
 .photo-frame {
   width: 95%;
-  margin: 0 auto 18px;
+  margin: auto;
   padding: 14px;
-  background: #fdfbf6;
   border: 6px solid #8b5e3c;
   border-radius: 12px;
-  box-shadow:
-    inset 0 0 0 3px #d8b892,
-    0 12px 25px rgba(0,0,0,0.25);
+  background: #fdfbf6;
 }
 
 .photo {
@@ -116,10 +130,9 @@ body {
 }
 
 .caption {
-  font-size: 1rem;
   text-align: center;
-  color: #6b4b35;
   margin-top: 12px;
+  color: #6b4b35;
 }
 
 .hint {
@@ -128,7 +141,6 @@ body {
   width: 100%;
   text-align: center;
   font-size: 0.85rem;
-  color: #8b5e3c;
   opacity: 0.7;
 }
 
@@ -144,78 +156,81 @@ body {
   <div class="page" id="page1">
     <div class="title">Happy Birthday 💖</div>
     <div class="wish-text">
-      Today I open this diary with emotions that words can barely hold.<br><br>
-      You entered my life like a beautiful surprise,
-      turning ordinary moments into something meaningful.<br><br>
-      May your days be gentle, your nights peaceful,
-      and your heart always surrounded by love. 💕
+      This diary opens with feelings I cannot fully explain.<br><br>
+      Every page holds memories, emotions, and pieces of my heart.
     </div>
   </div>
 
-  <div class="page hidden-right" id="page2">
-    <div class="photo-frame">
-      <img src="2.jpeg" class="photo">
-    </div>
-    <div class="caption">A memory that makes my heart smile.</div>
-  </div>
-
-  <div class="page hidden-left" id="page3">
+  <div class="page hide-roll" id="page2">
     <div class="photo-frame">
       <img src="1.jpeg" class="photo">
     </div>
-    <div class="caption">Your smile makes everything feel lighter.</div>
+    <div class="caption">A smile worth remembering.</div>
   </div>
 
-  <div class="page hidden-right" id="page4">
+  <div class="page hide-roll" id="page3">
     <div class="photo-frame">
-      <img src="5.jpeg" class="photo">
+      <img src="2.jpeg" class="photo">
     </div>
-    <div class="caption">Moments frozen in happiness.</div>
+    <div class="caption">Captured happiness.</div>
   </div>
 
-  <div class="page hidden-left" id="page5">
-    <div class="photo-frame">
-      <img src="4.jpeg" class="photo">
-    </div>
-    <div class="caption">Every page reminds me of you.</div>
-  </div>
-
-  <div class="page hidden-right" id="page6">
+  <div class="page hide-roll" id="page4">
     <div class="photo-frame">
       <img src="3.jpeg" class="photo">
     </div>
-    <div class="caption">Forever cherished memories.</div>
+    <div class="caption">Moments that matter.</div>
   </div>
 
-  <div class="page hidden-left" id="page7">
-    <div class="title">For You, Bhavu 💖</div>
+  <div class="page hide-roll" id="page5">
+    <div class="photo-frame">
+      <img src="4.jpeg" class="photo">
+    </div>
+    <div class="caption">Forever cherished.</div>
+  </div>
+
+  <div class="page hide-roll" id="page6">
+    <div class="photo-frame">
+      <img src="5.jpeg" class="photo">
+    </div>
+    <div class="caption">Pure happiness.</div>
+  </div>
+
+  <div class="page hide-roll" id="page7">
+    <div class="title">For You 💕</div>
     <div class="wish-text">
-      Bhavikaba is your name,
-      but Bhavu is how my heart knows you.<br><br>
-      Happy Birthday, Bhavu 💕<br>
-      Always special. Always cherished.
+      Always special. Always remembered.
     </div>
   </div>
 
-  <div class="hint">Swipe or tap to flip pages 📖</div>
+  <div class="hint">Swipe or tap to flip 📖</div>
 </div>
 
-<audio id="flipSound" src="page-flip.mp3" preload="auto"></audio>
+<audio id="flipSound" src="page-flip.mp3"></audio>
 
 <script>
 let current = 1;
+let animationIndex = 0;
 const total = 7;
-const sound = document.getElementById("flipSound");
+
+const animations = [
+  'hide-roll',
+  'hide-blur',
+  'hide-slide',
+  'hide-zoom'
+];
 
 function showPage(n) {
-  for (let i = 1; i <= total; i++) {
-    const page = document.getElementById('page' + i);
-    page.classList.add(i % 2 === 0 ? 'hidden-right' : 'hidden-left');
-  }
-  document.getElementById('page' + n).classList.remove('hidden-right','hidden-left');
+  const anim = animations[animationIndex % animations.length];
 
-  sound.currentTime = 0;
-  sound.play().catch(()=>{});
+  for (let i = 1; i <= total; i++) {
+    const p = document.getElementById('page' + i);
+    animations.forEach(a => p.classList.remove(a));
+    if (i !== n) p.classList.add(anim);
+  }
+
+  animationIndex++;
+  document.getElementById("flipSound").play().catch(()=>{});
 }
 
 /* Tap */
@@ -231,7 +246,6 @@ let startX = 0;
 document.querySelector('.diary').addEventListener('touchstart', e => {
   startX = e.touches[0].clientX;
 });
-
 document.querySelector('.diary').addEventListener('touchend', e => {
   let endX = e.changedTouches[0].clientX;
   if (startX - endX > 60 && current < total) current++;
@@ -242,6 +256,7 @@ document.querySelector('.diary').addEventListener('touchend', e => {
 
 </body>
 </html>
+
 
 
 
