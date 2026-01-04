@@ -29,13 +29,13 @@ body {
   height: 85vh;
   max-height: 780px;
   background: #fff8ee;
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 25px 50px rgba(0,0,0,0.35);
   overflow: hidden;
   border-left: 8px solid #caa472;
 }
 
-/* 🔥 SPIRAL FIXED */
+/* Spiral */
 .spiral {
   position: absolute;
   left: -14px;
@@ -59,20 +59,24 @@ body {
   position: absolute;
   inset: 0;
   padding: 30px 25px;
-  box-sizing: border-box;
   background: repeating-linear-gradient(
     to bottom,
     #fff8ee,
     #fff8ee 28px,
     #f0e1c6 29px
   );
-  transform-origin: left;
-  transition: transform 0.8s ease, opacity 0.6s ease;
+  transition: transform 0.9s ease, opacity 0.6s ease;
 }
 
-/* Page animation */
-.page.hidden {
-  transform: translateX(100%) rotateY(-25deg);
+/* Animations */
+.hidden-right {
+  transform: translateX(110%) rotateY(-35deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hidden-left {
+  transform: translateX(-110%) rotateY(35deg);
   opacity: 0;
   pointer-events: none;
 }
@@ -93,50 +97,34 @@ body {
 
 /* Photo Frame */
 .photo-frame {
-  width: 92%;
+  width: 95%;
   margin: 0 auto 18px;
-  padding: 12px;
+  padding: 14px;
   background: #fdfbf6;
   border: 6px solid #8b5e3c;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow:
     inset 0 0 0 3px #d8b892,
     0 12px 25px rgba(0,0,0,0.25);
-  position: relative;
 }
 
-.photo-frame::before,
-.photo-frame::after {
-  content: "";
-  position: absolute;
-  width: 60px;
-  height: 18px;
-  background: rgba(255,255,255,0.6);
-  top: -10px;
-}
-.photo-frame::before { left: 10px; transform: rotate(-8deg); }
-.photo-frame::after  { right: 10px; transform: rotate(6deg); }
-
-/* Photo */
 .photo {
   width: 100%;
-  height: 320px;
+  height: 340px;
   object-fit: cover;
-  border-radius: 6px;
-  display: block;
+  border-radius: 8px;
 }
 
 .caption {
   font-size: 1rem;
   text-align: center;
   color: #6b4b35;
-  line-height: 1.7;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .hint {
   position: absolute;
-  bottom: 10px;
+  bottom: 8px;
   width: 100%;
   text-align: center;
   font-size: 0.85rem;
@@ -144,19 +132,15 @@ body {
   opacity: 0.7;
 }
 
-* {
-  user-select: none;
-}
+* { user-select: none; }
 </style>
 </head>
 
 <body>
 
 <div class="diary">
-  <!-- ✅ SPIRAL ADDED -->
   <div class="spiral"></div>
 
-  <!-- PAGE 1 -->
   <div class="page" id="page1">
     <div class="title">Happy Birthday 💖</div>
     <div class="wish-text">
@@ -168,44 +152,42 @@ body {
     </div>
   </div>
 
-  <!-- PHOTO PAGES -->
-  <div class="page hidden" id="page2">
+  <div class="page hidden-right" id="page2">
     <div class="photo-frame">
       <img src="2.jpeg" class="photo">
     </div>
     <div class="caption">A memory that makes my heart smile.</div>
   </div>
 
-  <div class="page hidden" id="page3">
+  <div class="page hidden-left" id="page3">
     <div class="photo-frame">
       <img src="1.jpeg" class="photo">
     </div>
     <div class="caption">Your smile makes everything feel lighter.</div>
   </div>
 
-   <div class="page hidden" id="page4">
+  <div class="page hidden-right" id="page4">
     <div class="photo-frame">
       <img src="5.jpeg" class="photo">
     </div>
-    <div class="caption">Your smile makes everything feel lighter.</div>
+    <div class="caption">Moments frozen in happiness.</div>
   </div>
 
-  <div class="page hidden" id="page5">
+  <div class="page hidden-left" id="page5">
     <div class="photo-frame">
       <img src="4.jpeg" class="photo">
     </div>
-    <div class="caption">Your smile makes everything feel lighter.</div>
+    <div class="caption">Every page reminds me of you.</div>
   </div>
 
-  <div class="page hidden" id="page6">
+  <div class="page hidden-right" id="page6">
     <div class="photo-frame">
       <img src="3.jpeg" class="photo">
     </div>
-    <div class="caption">Your smile makes everything feel lighter.</div>
+    <div class="caption">Forever cherished memories.</div>
   </div>
 
-  <!-- LAST PAGE -->
-  <div class="page hidden" id="page7">
+  <div class="page hidden-left" id="page7">
     <div class="title">For You, Bhavu 💖</div>
     <div class="wish-text">
       Bhavikaba is your name,
@@ -215,7 +197,7 @@ body {
     </div>
   </div>
 
-  <div class="hint">Tap or swipe to turn pages 📖</div>
+  <div class="hint">Swipe or tap to flip pages 📖</div>
 </div>
 
 <audio id="flipSound" src="page-flip.mp3" preload="auto"></audio>
@@ -227,14 +209,16 @@ const sound = document.getElementById("flipSound");
 
 function showPage(n) {
   for (let i = 1; i <= total; i++) {
-    document.getElementById('page' + i)?.classList.add('hidden');
+    const page = document.getElementById('page' + i);
+    page.classList.add(i % 2 === 0 ? 'hidden-right' : 'hidden-left');
   }
-  document.getElementById('page' + n)?.classList.remove('hidden');
+  document.getElementById('page' + n).classList.remove('hidden-right','hidden-left');
+
   sound.currentTime = 0;
   sound.play().catch(()=>{});
 }
 
-/* CLICK = NEXT */
+/* Tap */
 document.querySelector('.diary').addEventListener('click', () => {
   if (current < total) {
     current++;
@@ -242,26 +226,23 @@ document.querySelector('.diary').addEventListener('click', () => {
   }
 });
 
-/* ✅ SWIPE FIXED */
+/* Swipe */
 let startX = 0;
-
 document.querySelector('.diary').addEventListener('touchstart', e => {
   startX = e.touches[0].clientX;
 });
 
 document.querySelector('.diary').addEventListener('touchend', e => {
   let endX = e.changedTouches[0].clientX;
-  if (startX - endX > 60 && current < total) {
-    current++;
-  } else if (endX - startX > 60 && current > 1) {
-    current--;
-  }
+  if (startX - endX > 60 && current < total) current++;
+  else if (endX - startX > 60 && current > 1) current--;
   showPage(current);
 });
 </script>
 
 </body>
 </html>
+
 
 
 
